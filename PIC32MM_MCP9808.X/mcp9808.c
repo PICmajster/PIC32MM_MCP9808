@@ -42,13 +42,13 @@ void read_Temp(void) {
     if ((UpperByte & 0x20) == 0x20){/*tutaj kod do obslugi zdarzenia*/}   //TA < TLOWER
     
     UpperByte = UpperByte & 0x1F;                //Clear flag bits
-    if ((UpperByte & 0x10) == 0x10){             //TA < 0°C
+    if ((UpperByte & 0x10) == 0x10){             //TA < 0Â°C
     UpperByte = UpperByte & 0x0F;                //Clear SIGN
-    Temperature = 256 - ((float)UpperByte * 16 + (float)LowerByte / 16); 
+    Temperature = 256.0 - (((float)(UpperByte) * 16.0) + ((float)(LowerByte) / 16.0)); 
     } else                                       
-    Temperature = ((float)UpperByte * 16 + (float)LowerByte / 16); //TA >= 0°C
+    Temperature = (((float)(UpperByte) * 16.0) + ((float)(LowerByte) / 16.0)); //TA >= 0Â°C
     
-    /*Temperature = Ambient Temperature (°C)*/
+    /*Temperature = Ambient Temperature (Â°C)*/
     /*konwersja float na string i zapis wyniku do bufora*/
     sprintf(Temperature_bufor,"%2.1f",Temperature);
     /*wyswietlamy temperature na LCD*/
